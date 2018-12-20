@@ -30,6 +30,11 @@ import matplotlib.pyplot as plt
 %matplotlib inline
 #計算任意欄位的平均數及標準差
 print("AMT_ANNUITY Mean:%s ,AMT_ANNUITY Variance:%s"%(app_train['AMT_ANNUITY'].mean(),app_train['AMT_ANNUITY'].var()))
+app_train['AMT_ANNUITY'].describe()
 #畫出任意欄位的直方圖
 app_train_norm = (app_train['AMT_ANNUITY']-app_train['AMT_ANNUITY'].mean())/(app_train['AMT_CREDIT'].max()-app_train['AMT_CREDIT'].min())
 app_train_norm.hist(bins=50)
+
+app_train['AMT_ANNUITY'].loc[app_train['AMT_ANNUITY']<app_train['AMT_ANNUITY'].quantile(0.95)][app_train['AMT_ANNUITY']].hist()
+app_train_norm.hist(bins=50)
+plt.xlabel('AMT_ANNUITY')
